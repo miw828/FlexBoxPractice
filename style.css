@@ -1,0 +1,61 @@
+body{
+  /**Add a color**/
+  margin: 20px;
+  
+}
+.picture{
+  width: 200px;
+  height: 200px;
+  border: solid black; 
+}
+
+#one{
+  width: 250px; 
+  height: 1000px; 
+  
+}
+.allImages{
+  display: flex; 
+  gap: 20px; 
+  
+}
+#two{
+  width: 200px; 
+  height: 400px;
+}
+.col-two {
+  display: flex; 
+  flex-direction: column; 
+  gap: 30px; 
+   
+}
+
+.col-three{
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+}
+.threeHalf{
+  display:flex;
+  gap: 20px; 
+}
+
+#seven, #four{
+  width: 450px; 
+  
+}
+
+#five, #six{
+  width: 212px; 
+}
+
+.col-four{
+  display: flex; 
+  gap: 20px;
+  flex-direction: column; 
+}
+
+#eight, #nine {
+  width: 400px; 
+  height: 500px; 
+}
