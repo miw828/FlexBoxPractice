@@ -1,105 +1,84 @@
+:root{
+  /* wide screens: scale by width, never bigger than your original sizes */
+  --u: min(1px, (100vw - 40px) / 1960);
+}
+
 body{
-  /**Add a color**/
+  background: #f2efe9;      /* pick any color */
   margin: 20px;
-  
 }
+
+/* each picture just declares its original width/height */
 .picture{
-  width: 200px;
-  height: 200px;
-  border: solid black; 
-}
-
-#one{
-  width: 250px;
-  height: 1000px;
-  background-image: url('./one.jpg');
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+  border: calc(3 * var(--u)) solid black;
+  box-sizing: border-box;
   background-size: cover;
   background-position: center;
 }
 
-#two{
-  width: 200px;
-  height: 400px;
-  background-image: url('./two.jpg');
-  background-size: cover;
-  background-position: center;
-}
+#one   { --w: 350; --h: 1000; background-image: url('./one.jpg'); }
+#two   { --w: 500; --h: 480;  background-image: url('./two.jpg'); }
+#three { --w: 500; --h: 500;  background-image: url('./three.jpg'); }
+#four  { --w: 625; --h: 350;  background-image: url('./four.jpg'); }
+#five  { --w: 300; --h: 400;  background-image: url('./five.jpg'); }
+#six   { --w: 300; --h: 400;  background-image: url('./six.jpg'); }
+#seven { --w: 650; --h: 300;  background-image: url('./seven.jpg'); }
+#eight { --w: 400; --h: 500;  background-image: url('./eight.jpg'); }
+#nine  { --w: 400; --h: 500;  background-image: url('./nine.jpg'); }
 
-#three{
-  background-image: url('./three.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#four{
-  width: 450px;
-  background-image: url('./four.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#five{
-  width: 212px;
-  background-image: url('./five.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#six{
-  width: 212px;
-  background-image: url('./six.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#seven{
-  width: 450px;
-  background-image: url('./seven.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#eight{
-  width: 400px;
-  height: 500px;
-  background-image: url('./eight.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-#nine{
-  width: 400px;
-  height: 500px;
-  background-image: url('./nine.HEIC');
-  background-size: cover;
-  background-position: center;
-}
 .allImages{
-  display: flex; 
-  gap: 20px; 
-  
+  display: flex;
+  gap: calc(20 * var(--u));
 }
 
-.col-two {
-  display: flex; 
-  flex-direction: column; 
-  gap: 30px; 
-   
+.col-two{
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--u));
 }
 
-.col-three{
-  display: flex; 
-  flex-direction: column; 
-  gap: 20px; 
-}
-.threeHalf{
-  display:flex;
-  gap: 20px; 
-}
+.col-three,
 .col-four{
-  display: flex; 
-  gap: 20px;
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--u));
 }
 
+.threeHalf{
+  display: flex;
+  gap: calc(20 * var(--u));
+}
 
+/* ---------- narrow screens: stack everything ---------- */
+@media (max-width: 900px){
+  .allImages,
+  .col-two,
+  .col-three,
+  .col-four{
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+
+  .threeHalf{
+    gap: 15px;
+  }
+
+  .picture{
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--w) / var(--h);   /* keeps each picture's original shape */
+    border-width: 3px;
+  }
+
+  /* five and six sit side by side */
+  .threeHalf .picture{
+    width: auto;
+    flex: 1;
+  }
+
+  /* #one is very tall (350x1000), so soften it when it's full width */
+  #one{ aspect-ratio: 3 / 4; }
+}
